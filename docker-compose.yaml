@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    container_name: wr-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/wr_database
+      SPRING_DATASOURCE_USERNAME: dirwul
+      SPRING_DATASOURCE_PASSWORD: some_pass
+    restart: always
+
+  db:
+    image: postgres:16
+    container_name: wr-db
+    environment:
+      POSTGRES_USER: dirwul
+      POSTGRES_PASSWORD: some_pass
+      POSTGRES_DB: wr_database
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
+    driver: local

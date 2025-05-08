@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: WRService
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wr_database
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+        jta:
+          platform: org.hibernate.engine.transaction.internal.jta.JtaPlatformStandardImpl
+    # use eager
+    open-in-view: false
