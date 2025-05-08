@@ -2,9 +2,9 @@ spring:
   application:
     name: WRService
   datasource:
-    url: jdbc:postgresql://localhost:5432/wr_database
-    username:
-    password:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -15,5 +15,4 @@ spring:
         format_sql: false
         jta:
           platform: org.hibernate.engine.transaction.internal.jta.JtaPlatformStandardImpl
-    # use eager
     open-in-view: false

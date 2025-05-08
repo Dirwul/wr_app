@@ -10,7 +10,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/wr_database
       SPRING_DATASOURCE_USERNAME: dirwul
       SPRING_DATASOURCE_PASSWORD: some_pass
-    restart: always
+    #restart: always
+    networks:
+      - app-db-network
 
   db:
     image: postgres:16
@@ -23,7 +25,13 @@ services:
       - postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - app-db-network
 
 volumes:
   postgres-data:
     driver: local
+
+networks:
+  app-db-network:
+    driver: bridge
